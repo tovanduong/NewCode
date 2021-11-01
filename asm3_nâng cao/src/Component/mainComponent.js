@@ -3,7 +3,7 @@ import StaffDetail from "./detailComponent";
 import React, { Component } from "react";
 import Home from "./homeComponent";
 import { Router, Switch, Route, Redirect, withRouter } from "react-router-dom";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import Salary from "./salaryComponent";
 import Department from "./departmentComponent";
 import Header from "./headerComponent";
@@ -12,17 +12,17 @@ import Footer from "./footerComponent";
 import Staff from "./menuComponent";
 import history from "../helps/history";
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     staffs: state.staffs,
     itemDepartment: state.itemDepartment,
-  }
-  
-}
+  };
+};
 
 class Main extends Component {
   constructor(props) {
     super(props);
+    this.state = {};
     this.addStaff = this.addStaff.bind(this);
   }
 
@@ -31,6 +31,7 @@ class Main extends Component {
       try {
         const staffs = JSON.parse(localStorage.getItem("staffs"));
         this.setState({ staffs: staffs });
+
         console.log(staffs);
       } catch {}
     } else {
@@ -47,7 +48,8 @@ class Main extends Component {
   }
 
   render() {
-    console.log(this.props.staffs)
+    console.log(this.state.staffs);
+
     const HomePage = () => {
       return <Home />;
     };
@@ -55,7 +57,8 @@ class Main extends Component {
       return (
         <StaffDetail
           items={
-            this.props.staffs.filter(
+            this.state.staffs &&
+            this.state.staffs.filter(
               (items) => items.id === parseInt(match.params.itemsId, 10)
             )[0]
           }
@@ -73,14 +76,14 @@ class Main extends Component {
                 exact
                 path="/Staff"
                 component={() => (
-                  <Staff items={this.props.staffs} addStaff={this.addStaff} />
+                  <Staff items={this.state.staffs} addStaff={this.addStaff} />
                 )}
               />
               <Route path="/Staff/:itemsId" component={DishWithId} />
               <Route
                 exact
                 path="/salary"
-                component={() => <Salary items={this.props.staffs} />}
+                component={() => <Salary items={this.state.staffs} />}
               />
               <Route
                 exact

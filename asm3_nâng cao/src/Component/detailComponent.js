@@ -5,16 +5,14 @@ import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 function RenderDept (items) {
     const newarr = JSON.parse(localStorage.getItem("staffs")) 
+
     const findarr = newarr.find(function(el){
         return el.id === items.items.id
     })
-    console.log(items.items.id)
     const dept = findarr.department
-    console.log(items.items.department)
     return dept;
 }
 function RenderStaff({ item }) {
-    console.log(item.department)
     return (
         <div key={item.id} className="row">
             <div className="col-3">
@@ -32,6 +30,7 @@ function RenderStaff({ item }) {
     );
 }
 const StaffDetail = (props) => {
+    // console.log(props)
     if (props.items != null)
         return (
             <div className="container">
