@@ -180,9 +180,13 @@ i{
     height: 40px;
     margin-right: 150px;
     margin-top: 10px;
+    background-color: blue;
 }
 .fa-plus{
     font-size: 20px;
+}
+.addStaff:hover{
+    background-color: rgba(0, 0, 255, 0.5);
 }
 .linknav{
     min-width: 330px;
