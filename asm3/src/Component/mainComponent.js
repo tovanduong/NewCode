@@ -20,6 +20,26 @@ class Main extends Component {
     this.addStaff = this.addStaff.bind(this);
   }
 
+  componentDidMount() {
+    if (localStorage.getItem("staffs")) {
+      try {
+        const staffs = JSON.parse(localStorage.getItem("staffs"));
+        this.setState({ staffs: staffs });
+        console.log(staffs);
+      } catch {}
+    } else {
+      localStorage.setItem("staffs", JSON.stringify(STAFFS));
+      this.setState({ staffs: STAFFS });
+    }
+  }
+
+  addStaff(staff) {
+    
+    const newStaffs = this.state.staffs.concat([staff]); 
+    console.log(staff);
+    this.setState({ staffs: newStaffs });
+    localStorage.setItem("staffs", JSON.stringify(newStaffs));
+  }
 
   render() {
     const HomePage = () => {
