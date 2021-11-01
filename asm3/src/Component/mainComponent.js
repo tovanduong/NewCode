@@ -22,25 +22,23 @@ class Main extends Component {
 
   componentDidMount() {
     if (localStorage.getItem("staffs")) {
-      // trường hợp có localstorage
       try {
-        const staffs = JSON.parse(localStorage.getItem("staffs")); // dùng try catch để parse dữ liệu trong localStorage ra mảng staffs đề phòng parse lỗi.
-        this.setState({ staffs: staffs }); // cập nhật lại state staffs cho component
+        const staffs = JSON.parse(localStorage.getItem("staffs"));
+        this.setState({ staffs: staffs });
         console.log(staffs);
       } catch {}
     } else {
-      //trường hợp k có localStorage
-      localStorage.setItem("staffs", JSON.stringify(STAFFS)); // cập nhật lại localStorage là mảng STAFFS ban đầu (lúc chưa thêm phần tử nào)
+      localStorage.setItem("staffs", JSON.stringify(STAFFS));
       this.setState({ staffs: STAFFS });
     }
   }
 
   addStaff(staff) {
-    // hàm addStaff nhận vào tham số là staff,là object chưa dữ liệu nhập từ form vào
-    const newStaffs = this.state.staffs.concat([staff]); // tạo ra mảng mới là mảng cũ nối thêm phần tử mới nhập vào
+    
+    const newStaffs = this.state.staffs.concat([staff]); 
     console.log(staff);
-    this.setState({ staffs: newStaffs }); // cập nhật lại state staffs cho component
-    localStorage.setItem("staffs", JSON.stringify(newStaffs)); // cập nhật lại storage là mảng staffs mới sau khi đã thêm
+    this.setState({ staffs: newStaffs });
+    localStorage.setItem("staffs", JSON.stringify(newStaffs));
   }
 
   render() {
@@ -70,7 +68,7 @@ class Main extends Component {
                 path="/Staff"
                 component={() => (
                   <Staff items={this.state.staffs} addStaff={this.addStaff} />
-                )} // truyền prop addStaff vào trong component Staff
+                )}
               />
               <Route path="/Staff/:itemsId" component={DishWithId} />
               <Route

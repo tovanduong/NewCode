@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { STAFFS } from "../shared/staffs";
 import {
   CardImg,
   CardTitle,
@@ -157,9 +156,9 @@ const Staff = function (props) {
         department: department,
         annualLeave: annualLeave,
         overTime: overTime,
-      }; // tạo 1 object newStaff chứa dữ liệu vừa nhập từ form
+      };
       console.log(newStaff);
-      props.addStaff(newStaff); // gọi đến prop addStaff và truyề vào newStaff để xử lý thêm nhân viên
+      props.addStaff(newStaff);
       alert("Đã thêm nhân viên");
     }
   };
