@@ -162,37 +162,7 @@ const Staff = function (props) {
       alert("Đã thêm nhân viên");
     }
   };
-  const formValidation = () => {
-    const fulnameErr = {};
-    const doBErr = {};
-    const startDateErr = {};
-    let isValid = true;
-    if (fulname.length < 5) {
-      fulnameErr.fulnameShort = "Họ và tên quá ngắn";
-      isValid = false;
-    }
-    if (fulname.length === 0) {
-      fulnameErr.fulnameShort = "Yêu cầu nhập";
-      isValid = false;
-    }
 
-    if (fulname.length > 15) {
-      fulnameErr.fulnameLong = "Họ và tên quá dài";
-      isValid = false;
-    }
-    if (doB.length === 0) {
-      doBErr.doBError = "Yêu cầu nhập";
-      isValid = false;
-    }
-    if (startDate.length === 0) {
-      startDateErr.startDateError = "Yêu cầu nhập";
-      isValid = false;
-    }
-    setFulnameErr(fulnameErr);
-    setDoBErr(doBErr);
-    setStartDateErr(startDateErr);
-    return isValid;
-  };
   // =====================Menu==========================
   const Staff =
     props.items &&
