@@ -72,7 +72,7 @@ const Staff = function (props) {
   const [fulnameErr, setFulnameErr] = useState("");
   const [doBErr, setDoBErr] = useState("");
   const [startDateErr, setStartDateErr] = useState("");
-
+  const [departmentErr, setDepartmentErr] = useState("");
   const handleChange = (e) => {
     setFulname(e.target.value);
     const fulnameErr = {};
@@ -124,6 +124,7 @@ const Staff = function (props) {
     }
     setDoBErr(doBErr);
   };
+
   const handleChangeStartDate = (e) => {
     setStartDate(e.target.value);
     const startDateErr = {};
@@ -134,13 +135,36 @@ const Staff = function (props) {
   };
   const handleBlurStartDate = () => {
     const startDateErr = {};
-    if (doB.length === 0) {
+    if (startDate.length === 0) {
       startDateErr.startDateError = "Yêu cầu nhập";
     }
     if (startDate.length !== 0) {
       startDateErr.startDateError = "";
     }
     setStartDateErr(startDateErr);
+  };
+
+  const handleChangeDepartment = (e) => {
+    setDepartment(e.target.value);
+    const departmentErr = {};
+    console.log(department.length);
+    if (departmentErr.length === 0) {
+      departmentErr.departmentError = "Yêu cầu chọn";
+    }
+    if (departmentErr.length !== 0) {
+      departmentErr.departmentError = "";
+    }
+    setDepartmentErr(departmentErr);
+  };
+  const handleBlurDepartment = () => {
+    const departmentErr = {};
+    if (departmentErr.length === 0) {
+      departmentErr.departmentError = "Yêu cầu chọn";
+    }
+    if (departmentErr.length !== 0) {
+      departmentErr.departmentError = "";
+    }
+    setDepartmentErr(departmentErr);
   };
 
   const handleSubmit = (event) => {
@@ -166,6 +190,7 @@ const Staff = function (props) {
     const fulnameErr = {};
     const doBErr = {};
     const startDateErr = {};
+    const departmentErr = {};
     let isValid = true;
     if (fulname.length < 5) {
       fulnameErr.fulnameShort = "Họ và tên quá ngắn";
@@ -188,9 +213,15 @@ const Staff = function (props) {
       startDateErr.startDateError = "Yêu cầu nhập";
       isValid = false;
     }
+    console.log(department.length);
+    if (department.length === 0) {
+      departmentErr.departmentError = "Yêu cầu chọn";
+      isValid = false;
+    }
     setFulnameErr(fulnameErr);
     setDoBErr(doBErr);
     setStartDateErr(startDateErr);
+    setDepartmentErr(departmentErr);
     return isValid;
   };
   // =====================Menu==========================
@@ -341,16 +372,23 @@ const Staff = function (props) {
                       type="select"
                       name="department"
                       value={department}
-                      onChange={(e) => {
-                        setDepartment(e.target.value);
-                      }}
+                      onChange={handleChangeDepartment}
+                      onBlur={handleBlurDepartment}
                     >
+                      <option>===Select===</option>
                       <option>Sale</option>
                       <option>HR</option>
                       <option>Marketing</option>
                       <option>IT</option>
                       <option>Finance</option>
                     </Input>
+                    {Object.keys(departmentErr).map((key, index) => {
+                      return (
+                        <div key={index} style={{ color: "red" }}>
+                          {departmentErr[key]}
+                        </div>
+                      );
+                    })}
                   </Col>
                 </FormGroup>
                 <FormGroup row>
