@@ -153,6 +153,7 @@ i{
 .form-group{
     width: 100%;
     padding-left: 20px;
+    margin-bottom: 10px;
 }
 .close{
     float: right;
@@ -195,9 +196,11 @@ i{
 .linknav{
     min-width: 330px;
 }
-.form-group{
-    margin-bottom: 20px;
-}
+
 .btn{
     margin-top: 10px;
+}
+.row-form-content{
+    
+    margin: 10px 0px 10px 0px;
 }

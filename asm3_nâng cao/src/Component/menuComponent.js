@@ -14,6 +14,10 @@ import {
 import { Control, LocalForm, Errors } from "react-redux-form";
 import { Link } from "react-router-dom";
 
+const required = (val) => val && val.length;
+const maxLength = (len) => (val) => !val || val.length <= len;
+const minLength = (len) => (val) => val && val.length >= len;
+
 function RenderMenu({ items }) {
   return (
     <Link
@@ -61,9 +65,24 @@ const Staff = function (props) {
   };
   const handOverlay = () => {
     setToggle(!toggle);
-  };
+  }
   // ===============validate===============
+  const handleSubmit = function(values){
+    const newStaff = {
+      id: props.items.length,
+        image: "/assets/images/alberto.png",
+        name: values.name,
+        doB: values.doB,
+        salaryScale: values.salaryScale,
+        department: values.department,
+        annualLeave: values.annualLeave,
+        overTime: values.overTime,
+    }
 
+    console.log(newStaff);
+    props.addStaff(newStaff);
+    // event.preventDefault();
+}
   // =====================Menu==========================
   const Menu =
     props.items &&
@@ -136,23 +155,38 @@ const Staff = function (props) {
                 </p>
               </div>
               <hr />
-              <LocalForm className="fomr-container">
-                <Row>
-                  <Label md={3} htmlFor="fulname">
+              <LocalForm className="fomr-container" onSubmit={(values) => handleSubmit(values)}>
+                <Row className="row-form-content">
+                  <Label md={3} htmlFor="name">
                     Họ Tên
                   </Label>
                   <Col md={8}>
                     <Control.text
                       className="form-group"
-                      model=".fullname"
+                      model=".name"
                       id="fulname"
-                      name="fulname"
+                      name="name"
                       placeholder="full Name"
+                      validators={{
+                        required,
+                        minLength: minLength(3),
+                        maxLength: maxLength(15),
+                      }}
+                    />
+                    <Errors
+                      className="text-danger"
+                      model=".name"
+                      show="touched"
+                      messages={{
+                        required: "Yêu cầu nhập",
+                        minLength: " nhiều hơn 2 ký tự",
+                        maxLength: "15 ký tự trở xuống",
+                      }}
                     />
                   </Col>
                 </Row>
 
-                <Row>
+                <Row className="row-form-content">
                   <Label md={3} htmlFor="doB">
                     Ngày sinh
                   </Label>
@@ -163,11 +197,22 @@ const Staff = function (props) {
                       id="doB"
                       name="doB"
                       className="form-group"
+                      validators={{
+                        required,
+                      }}
+                    />
+                    <Errors
+                      className="text-danger"
+                      model=".doB"
+                      show="touched"
+                      messages={{
+                        required: "Yêu cầu nhập",
+                      }}
                     />
                   </Col>
                 </Row>
 
-                <Row>
+                <Row className="row-form-content">
                   <Label md={3} htmlFor="startDate">
                     Ngày vào công ty
                   </Label>
@@ -178,11 +223,22 @@ const Staff = function (props) {
                       model=".startDate"
                       id="startDate"
                       name="startDate"
+                      validators={{
+                        required,
+                      }}
+                    />
+                    <Errors
+                      className="text-danger"
+                      model=".doB"
+                      show="touched"
+                      messages={{
+                        required: "Yêu cầu nhập",
+                      }}
                     />
                   </Col>
                 </Row>
 
-                <Row>
+                <Row className="row-form-content">
                   <Label md={3} htmlFor="department">
                     Phòng ban
                   </Label>
@@ -191,6 +247,9 @@ const Staff = function (props) {
                       model=".department"
                       name="department"
                       className="form-group"
+                      validators={{
+                        required,
+                      }}
                     >
                       <option>===Select===</option>
                       <option>Sale</option>
@@ -199,10 +258,18 @@ const Staff = function (props) {
                       <option>IT</option>
                       <option>Finance</option>
                     </Control.select>
+                    <Errors
+                      className="text-danger"
+                      model=".doB"
+                      show="touched"
+                      messages={{
+                        required: "Yêu cầu nhập",
+                      }}
+                    />
                   </Col>
                 </Row>
 
-                <Row>
+                <Row className="row-form-content">
                   <Label md={3} htmlFor="salaryScale">
                     Hệ số lương
                   </Label>
@@ -217,7 +284,7 @@ const Staff = function (props) {
                   </Col>
                 </Row>
 
-                <Row>
+                <Row className="row-form-content">
                   <Label md={3} htmlFor="annualLeave">
                     Số ngày nghỉ còn lại
                   </Label>
@@ -232,7 +299,7 @@ const Staff = function (props) {
                   </Col>
                 </Row>
 
-                <Row>
+                <Row className="row-form-content">
                   <Label md={3} htmlFor="overTime">
                     Số ngày đã làm thêm
                   </Label>
@@ -247,7 +314,7 @@ const Staff = function (props) {
                   </Col>
                 </Row>
 
-                <Row>
+                <Row className="row-form-content">
                   <Col className="row">
                     <Button
                       type="submit"
