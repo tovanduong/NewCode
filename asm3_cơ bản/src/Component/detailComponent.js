@@ -3,18 +3,15 @@ import dateFormat from "dateformat";
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 // import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-function RenderDept (items) {
-    const newarr = JSON.parse(localStorage.getItem("staffs")) 
-    const findarr = newarr.find(function(el){
-        return el.id === items.items.id
-    })
-    console.log(items.items.id)
-    const dept = findarr.department
-    console.log(items.items.department)
-    return dept;
-}
+
 function RenderStaff({ item }) {
-    console.log(item.department)
+    const renderDept = ()=> {
+        if(!item.department.name){
+            let data= JSON.parse(localStorage.getItem('staffs'));
+            return data && data.find(x=>x.id === item.id)?.department;
+        }
+       return item.department.name
+    }
     return (
         <div key={item.id} className="row">
             <div className="col-3">
@@ -24,7 +21,7 @@ function RenderStaff({ item }) {
                 <h4>Họ tên: {item.name}</h4>
                 <p>Ngày sinh: {dateFormat(item.doB, "dd/mm/yyyy")}</p>
                 <p>Ngày vào công ty: {dateFormat(item.startDate, "dd/mm/yyyy")}</p>
-                <p>Phòng ban: <RenderDept items={item}/></p>
+                <p>Phòng ban: {renderDept()}</p>
                 <p>số ngày nghỉ còn lại: {item.annualLeave}</p>
                 <p>số ngày làm thêm: {item.overTime}</p>
             </div>
