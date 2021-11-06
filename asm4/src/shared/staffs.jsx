@@ -31,7 +31,7 @@ export const ROLE = {
     MANAGER_STAFF: "Quản lý"
 }
 export const IMG = {
-    image: '/assets/images/company.jpg'
+    image: '/asset/images/company.jpg'
 }
 export const STAFFS =
     [
@@ -44,7 +44,7 @@ export const STAFFS =
             department: DEPARTMENTS[0],
             annualLeave: 1,
             overTime: 1,
-            image: '/assets/images/alberto.png',
+            image: '/asset/images/alberto.png',
             salary: 3500000
         },
         {
@@ -56,7 +56,7 @@ export const STAFFS =
             department: DEPARTMENTS[1],
             annualLeave: 2,
             overTime: 3,
-            image: '/assets/images/alberto.png',
+            image: '/asset/images/alberto.png',
             salary: 3800000
         },
         {
@@ -68,7 +68,7 @@ export const STAFFS =
             department: DEPARTMENTS[3],
             annualLeave: 4,
             overTime: 5,
-            image: '/assets/images/alberto.png',
+            image: '/asset/images/alberto.png',
             salary: 3500000
         },
         {
@@ -80,7 +80,7 @@ export const STAFFS =
             department: DEPARTMENTS[2],
             annualLeave: 6,
             overTime: 7,
-            image: '/assets/images/alberto.png',
+            image: '/asset/images/alberto.png',
             salary: 3500000
         },
         {
@@ -92,7 +92,7 @@ export const STAFFS =
             department: DEPARTMENTS[2],
             annualLeave: 8,
             overTime: 1,
-            image: '/assets/images/alberto.png',
+            image: '/asset/images/alberto.png',
             salary: 3500000
         },
         {
@@ -104,7 +104,7 @@ export const STAFFS =
             department: DEPARTMENTS[4],
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/asset/images/alberto.png',
             salary: 6000000
         },
         {
@@ -116,7 +116,7 @@ export const STAFFS =
             department: DEPARTMENTS[4],
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/asset/images/alberto.png',
             salary: 6000000
         },
         {
@@ -128,7 +128,7 @@ export const STAFFS =
             department: DEPARTMENTS[2],
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/asset/images/alberto.png',
             salary: 6000000
         },
         {
@@ -140,7 +140,7 @@ export const STAFFS =
             department: DEPARTMENTS[3],
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/asset/images/alberto.png',
             salary: 6000000
         },
         {
@@ -152,7 +152,7 @@ export const STAFFS =
             department: DEPARTMENTS[4],
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/asset/images/alberto.png',
             salary: 6000000
         },
         {
@@ -164,7 +164,7 @@ export const STAFFS =
             department: DEPARTMENTS[4],
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/asset/images/alberto.png',
             salary: 6000000
         },
         {
@@ -176,7 +176,7 @@ export const STAFFS =
             department: DEPARTMENTS[4],
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/asset/images/alberto.png',
             salary: 6000000
         },
         {
@@ -188,7 +188,7 @@ export const STAFFS =
             department: DEPARTMENTS[4],
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/asset/images/alberto.png',
             salary: 6000000
         },
         {
@@ -200,7 +200,7 @@ export const STAFFS =
             department: DEPARTMENTS[4],
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/asset/images/alberto.png',
             salary: 6000000
         },
         {
@@ -212,7 +212,7 @@ export const STAFFS =
             department: DEPARTMENTS[4],
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/asset/images/alberto.png',
             salary: 6000000
         },
         {
@@ -224,7 +224,7 @@ export const STAFFS =
             department: DEPARTMENTS[4],
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/asset/images/alberto.png',
             salary: 6000000
         },
 
