@@ -51,7 +51,7 @@ class Main extends Component {
   }
 
   render() {
-    console.log(this.props.itemDepartment);
+    console.log(this.props);
     const HomePage = () => {
       return <Home items={this.props.staffs} />;
     };
@@ -86,8 +86,7 @@ class Main extends Component {
                     path="/Staff"
                     component={() => (
                       <Staff
-                        items={this.props.staffs}
-                        addStaff={this.addStaff}
+                        items={this.props}
                       />
                     )}
                   />

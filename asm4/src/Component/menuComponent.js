@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   CardImg,
   CardTitle,
@@ -14,6 +15,7 @@ import {
 import { Control, LocalForm, Errors } from "react-redux-form";
 import { Link } from "react-router-dom";
 import { Loading } from "./loadingComponent";
+import { postStaff } from "../redux/ActionCreator";
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !val || val.length <= len;
@@ -48,7 +50,7 @@ const Staff = function (props) {
   const [name, setName] = useState("");
   const [names, setNames] = useState([]);
   const HandleSearch = () => {
-    const filterName = props.items.filter(function (el) {
+    const filterName = props.items.staffs.staff.filter(function (el) {
       return el.name.toUpperCase().includes(name.toUpperCase()) === true;
     });
     if (names != null) {
@@ -69,28 +71,35 @@ const Staff = function (props) {
     setToggle(!toggle);
   };
   // ===============validate===============
+  const dispatch = useDispatch();
   const handleSubmit = function (values) {
-    const newStaff = {
-      id: props.items.length,
-      image: "/assets/images/alberto.png",
-      name: values.name,
-      doB: values.doB,
-      salaryScale: values.salaryScale,
-      department: values.department,
-      annualLeave: values.annualLeave,
-      overTime: values.overTime,
-    };
+    //post API here
 
-    // console.log(newStaff);
-    props.addStaff(newStaff);
-    // event.preventDefault();
+    const dept = props.items.itemDepartment.departments.find((el) => {
+      return el.name === values.department;
+    });
+
+    dispatch(postStaff(
+      props.items.staffs.staff.length,
+      values.name,
+      values.doB,
+      values.salaryScale,
+      values.startDate,
+      dept.id,
+      values.annualLeave,
+      values.overTime,
+      "/asset/images/alberto.png",
+      // values.salary
+    ));
   };
   // =====================Menu==========================
   console.log(props);
   const Menu =
-    props.items.staff &&
-    props.items.staff.map((item) => <RenderMenu key={item.id} items={item} />);
-  if (props.items.isLoading) {
+    props.items.staffs.staff &&
+    props.items.staffs.staff.map((item) => (
+      <RenderMenu key={item.id} items={item} />
+    ));
+  if (props.items.staffs.isLoading) {
     return (
       <div className="container">
         <div className="row">
@@ -98,11 +107,11 @@ const Staff = function (props) {
         </div>
       </div>
     );
-  } else if (props.items.errMess) {
+  } else if (props.items.staffs.errMess) {
     return (
       <div className="container">
         <div className="row">
-          <h4>{props.items.errMess}</h4>
+          <h4>{props.items.staffs.errMess}</h4>
         </div>
       </div>
     );
@@ -335,6 +344,21 @@ const Staff = function (props) {
                       />
                     </Col>
                   </Row>
+
+                  {/* <Row className="row-form-content">
+                    <Label md={3} htmlFor="salary">
+                      Lương
+                    </Label>
+                    <Col md={8}>
+                      <Control.text
+                        className="form-group"
+                        type="number"
+                        model=".salary"
+                        id="salary"
+                        name="salary"
+                      />
+                    </Col>
+                  </Row> */}
 
                   <Row className="row-form-content">
                     <Col className="row">
