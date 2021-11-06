@@ -4,14 +4,16 @@ import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 // import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-function RenderStaff({ item }) {
-    const renderDept = ()=> {
-        if(!item.department.name){
-            let data= JSON.parse(localStorage.getItem('staffs'));
-            return data && data.find(x=>x.id === item.id)?.department;
-        }
-       return item.department.name
-    }
+function RenderStaff({ item, dept }) {
+    // const depts = dept
+    // const renderDept = (item)=> {
+    //     console.log(item)
+        
+    //     if(item.departmentId != null){
+
+    //     }
+    //    return item.department.name
+    // }
     
     if(item){
         return (
@@ -23,7 +25,7 @@ function RenderStaff({ item }) {
                     <h4>Họ tên: {item.name}</h4>
                     <p>Ngày sinh: {dateFormat(item.doB, "dd/mm/yyyy")}</p>
                     <p>Ngày vào công ty: {dateFormat(item.startDate, "dd/mm/yyyy")}</p>
-                    <p>Phòng ban: {renderDept()}</p>
+                    <p>Phòng ban: {item.departmentId}</p>
                     <p>số ngày nghỉ còn lại: {item.annualLeave}</p>
                     <p>số ngày làm thêm: {item.overTime}</p>
                 </div>
@@ -33,6 +35,7 @@ function RenderStaff({ item }) {
 
 }
 const StaffDetail = (props) => {
+    console.log(props.dept)
     if (props.items)
         return (
             <div className="container">
@@ -47,7 +50,7 @@ const StaffDetail = (props) => {
                     </div>
                 </div>
                 <div >
-                    <RenderStaff item={props.items} />
+                    <RenderStaff item={props.items}/>
                 </div>
             </div>
         );

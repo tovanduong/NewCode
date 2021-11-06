@@ -11,7 +11,8 @@ function RenderDepartment({ items }) {
     )
 }
 function Department(props) {
-    const department = props.items.map((item) => {
+    console.log(props.items.departments)
+    const department = props.items.departments.map((item) => {
         return (
                 <RenderDepartment items={item} key={item.id}/>
         );

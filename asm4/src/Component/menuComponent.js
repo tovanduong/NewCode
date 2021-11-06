@@ -19,6 +19,7 @@ const maxLength = (len) => (val) => !val || val.length <= len;
 const minLength = (len) => (val) => val && val.length >= len;
 
 function RenderMenu({ items }) {
+  // console.log(items)
   return (
     <Link
       style={{
@@ -65,29 +66,29 @@ const Staff = function (props) {
   };
   const handOverlay = () => {
     setToggle(!toggle);
-  }
+  };
   // ===============validate===============
-  const handleSubmit = function(values){
+  const handleSubmit = function (values) {
     const newStaff = {
       id: props.items.length,
-        image: "/assets/images/alberto.png",
-        name: values.name,
-        doB: values.doB,
-        salaryScale: values.salaryScale,
-        department: values.department,
-        annualLeave: values.annualLeave,
-        overTime: values.overTime,
-    }
+      image: "/assets/images/alberto.png",
+      name: values.name,
+      doB: values.doB,
+      salaryScale: values.salaryScale,
+      department: values.department,
+      annualLeave: values.annualLeave,
+      overTime: values.overTime,
+    };
 
-    console.log(newStaff);
+    // console.log(newStaff);
     props.addStaff(newStaff);
     // event.preventDefault();
-}
+  };
   // =====================Menu==========================
+  // console.log(props.items.staff);
   const Menu =
-    props.items &&
-    props.items.map((item) => <RenderMenu key={item.id} items={item} />);
-
+    props.items.staff &&
+    props.items.staff.map((item) => <RenderMenu key={item.id} items={item} />);
   return (
     <div>
       <div className="container ">
@@ -155,7 +156,10 @@ const Staff = function (props) {
                 </p>
               </div>
               <hr />
-              <LocalForm className="fomr-container" onSubmit={(values) => handleSubmit(values)}>
+              <LocalForm
+                className="fomr-container"
+                onSubmit={(values) => handleSubmit(values)}
+              >
                 <Row className="row-form-content">
                   <Label md={3} htmlFor="name">
                     Họ Tên

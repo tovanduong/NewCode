@@ -2,7 +2,6 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card } from 'reactstrap';
 import { Link } from 'react-router-dom';
 function RenderSalary({ items }) {
-    console.log(items)
     return (
         <Card key={items.id} className="col-lg-3 col-md-5 col-sm-12 card-content">
             <h4>{items.name}</h4>
@@ -14,7 +13,7 @@ function RenderSalary({ items }) {
     )
 }
 function Salary(props) {
-    const salary = props.items.map((item) => {
+    const salary = props.items.salary.map((item) => {
         return (
             <RenderSalary items={item} key={item.id} />
         );
