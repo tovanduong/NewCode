@@ -45,7 +45,6 @@ function RenderStaff({ item }) {
 
   };
   const handledelete = function () {
-    console.log(item.id)
     dispatch(
       deleteStaff(
         item.id

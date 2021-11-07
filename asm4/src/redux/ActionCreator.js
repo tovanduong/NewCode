@@ -318,9 +318,10 @@ export const deleteStaff = (id) => (dispatch) => {
     )
     .then((response) => response.json())
     .then((response) => {
-      dispatch(delStaff(response))
+      console.log("Xóa: ")
       console.log(response)
-      fetchStaff()
+      dispatch(delStaff(response))
+      // fetchStaff()
     })
     .catch((error) => {
       console.log("update staff", error.message);
@@ -328,6 +329,7 @@ export const deleteStaff = (id) => (dispatch) => {
     });
 };
 
-export const delStaff = () => ({
+export const delStaff = (delStaff) => ({
   type: ActionType.DELETE_STAFF,
+  payload: delStaff,
 });
