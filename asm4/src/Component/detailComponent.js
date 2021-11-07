@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import dateFormat from "dateformat";
-import { patchStaff } from "../redux/ActionCreator";
+import { patchStaff, deleteStaff } from "../redux/ActionCreator";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -22,10 +23,11 @@ const maxLength = (len) => (val) => !val || val.length <= len;
 const minLength = (len) => (val) => val && val.length >= len;
 
 function RenderStaff({ item }) {
+  const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const departments = useSelector((state) => state.itemDepartment);
-//   item.doB = dateFormat(item.doB, "yyyy-mm-dd")
+  //   item.doB = dateFormat(item.doB, "yyyy-mm-dd")
   const handleSubmit = function (values) {
     dispatch(
       patchStaff(
@@ -37,10 +39,20 @@ function RenderStaff({ item }) {
         values.departmentId,
         values.annualLeave,
         values.overTime,
-        "/asset/images/alberto.png",
+        "/asset/images/alberto.png"
       )
     );
+
   };
+  const handledelete = function () {
+    console.log(item.id)
+    dispatch(
+      deleteStaff(
+        item.id
+      )
+    );
+    history.push("/staff")
+  }
   const handleOpen = () => {
     setIsOpen(!isOpen);
   };
@@ -66,16 +78,36 @@ function RenderStaff({ item }) {
             <h4>Họ tên: {item.name}</h4>
             <p>Ngày sinh: {dateFormat(item.doB, "dd/mm/yyyy")}</p>
             <p>Ngày vào công ty: {dateFormat(item.startDate, "dd/mm/yyyy")}</p>
-            <p>Phòng ban: {departments.departments.find(d => d.id === item.departmentId)?.name}</p>
+            <p>
+              Phòng ban:{" "}
+              {
+                departments.departments.find((d) => d.id === item.departmentId)
+                  ?.name
+              }
+            </p>
             <p>số ngày nghỉ còn lại: {item.annualLeave}</p>
             <p>số ngày làm thêm: {item.overTime}</p>
           </div>
           <Button
             onClick={handleOpen}
-            className="col-2"
-            style={{ maxHeight: "60px" }}
+            className="col-2 update"
           >
             Update information
+          </Button>
+          <Button
+            className="col-2 del"
+            style={{
+              position: "absolute",
+              height: "50px",
+              right: "-10px",
+              top: "100px",
+              marginBottom: "10px",
+              fontSize: "20px",
+              zIndex: "100",
+            }}
+            onClick={handledelete}
+          >
+            Xóa
           </Button>
         </div>
         <Modal isOpen={isOpen} toggle={handleOpen}>
@@ -182,11 +214,11 @@ function RenderStaff({ item }) {
                     }}
                   >
                     <option>===Select===</option>
-                    <option value='Dept01'>Sale</option>
-                    <option value='Dept02'>HR</option>
-                    <option value='Dept03'>Marketing</option>
-                    <option value='Dept04'>IT</option>
-                    <option value='Dept05'>Finance</option>
+                    <option value="Dept01">Sale</option>
+                    <option value="Dept02">HR</option>
+                    <option value="Dept03">Marketing</option>
+                    <option value="Dept04">IT</option>
+                    <option value="Dept05">Finance</option>
                   </Control.select>
                   <Errors
                     className="text-danger"

@@ -32,15 +32,15 @@ function RenderMenu({ items }) {
         fontWeight: "bold",
       }}
       to={`/Staff/${items.id}`}
-      className="col-lg-3 col-md-6 col-sm-12"
+      className="col-lg-3 col-md-6 col-sm-12 row"
     >
       <CardImg
-        className="card-menu"
+        className="card-menu col-12"
         width="100%"
         src={items.image}
         alt={items.name}
       />
-      <CardTitle style={{ textAlign: "center" }}>{items.name}</CardTitle>
+      <CardTitle className="col-12" style={{ textAlign: "center", fontSize: "22px" }}>{items.name}</CardTitle>
     </Link>
   );
 }

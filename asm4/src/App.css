@@ -196,7 +196,21 @@ i{
 .linknav{
     min-width: 330px;
 }
-
+.del{
+    background-color: green;
+    color: white;
+}
+.del:hover{
+    background-color: red;
+}
+.update{
+    max-height: 60px;
+    background-color: green;
+}
+.update:hover{
+    background-color: yellow;
+    color: black;
+}
 .btn{
     margin-top: 10px;
 }
