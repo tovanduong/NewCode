@@ -21,7 +21,10 @@ export const Staff = (state = { isLoading: true,
             
         case ActionTypes.DELETE_STAFF: 
             console.log(action.payload)
-                return {...state, isLoading: false, errMess: null, staff: action.payload};
+            return {...state, isLoading: false, errMess: null
+           //     ,staff: state.staff.filter(item=> item.id !== action.payload)
+                , staff: action.payload
+            };
         default:
             return state;
     }

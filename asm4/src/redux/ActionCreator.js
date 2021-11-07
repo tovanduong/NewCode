@@ -169,7 +169,7 @@ export const postStaff =
     departmentId,
     annualLeave,
     overTime,
-    image,
+    image
   ) =>
   (dispatch) => {
     const newStaff = {
@@ -222,65 +222,63 @@ export const addNewStaff = (newStaff) => ({
   payload: newStaff,
 });
 
-export const patchStaff =
-  (
-    id,
-    name,
-    doB,
-    salaryScale,
-    startDate,
-    departmentId,
-    annualLeave,
-    overTime,
-    image,
-  ) =>
-  {
-      return (dispatch) => {
-        const staff = {
-          id: id,
-          name: name,
-          doB: doB,
-          salaryScale: salaryScale,
-          startDate: startDate,
-          departmentId: departmentId,
-          annualLeave: annualLeave,
-          overTime: overTime,
-          image: image,
-        };
-        staff.date = new Date().toISOString();
-
-        return fetch(baseUrl + "staffs", {
-          method: "PATCH",
-          body: JSON.stringify(staff),
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "same-origin",
-        })
-          .then(
-            (response) => {
-              if (response.ok) {
-                return response;
-              } else {
-                var error = new Error(
-                  "Error " + response.status + ": " + response.statusText
-                );
-                error.response = response;
-                throw error;
-              }
-            },
-            (error) => {
-              throw error;
-            }
-          )
-          .then((response) => response.json())
-          .then((response) => dispatch(updateStaff(response)))
-          .catch((error) => {
-            console.log("update staff", error.message);
-            alert("Error: " + error.message);
-          });
-      };
+export const patchStaff = (
+  id,
+  name,
+  doB,
+  salaryScale,
+  startDate,
+  departmentId,
+  annualLeave,
+  overTime,
+  image
+) => {
+  return (dispatch) => {
+    const staff = {
+      id: id,
+      name: name,
+      doB: doB,
+      salaryScale: salaryScale,
+      startDate: startDate,
+      departmentId: departmentId,
+      annualLeave: annualLeave,
+      overTime: overTime,
+      image: image,
     };
+    staff.date = new Date().toISOString();
+
+    return fetch(baseUrl + "staffs", {
+      method: "PATCH",
+      body: JSON.stringify(staff),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "same-origin",
+    })
+      .then(
+        (response) => {
+          if (response.ok) {
+            return response;
+          } else {
+            var error = new Error(
+              "Error " + response.status + ": " + response.statusText
+            );
+            error.response = response;
+            throw error;
+          }
+        },
+        (error) => {
+          throw error;
+        }
+      )
+      .then((response) => response.json())
+      .then((response) => dispatch(updateStaff(response)))
+      .catch((error) => {
+        console.log("update staff", error.message);
+        alert("Error: " + error.message);
+      });
+  };
+};
 
 export const updateStaff = (updateStaff) => ({
   type: ActionType.UPDATE_STAFF,
@@ -318,10 +316,7 @@ export const deleteStaff = (id) => (dispatch) => {
     )
     .then((response) => response.json())
     .then((response) => {
-      console.log("Xóa: ")
-      console.log(response)
-      dispatch(delStaff(response))
-      // fetchStaff()
+      dispatch(delStaff(response));
     })
     .catch((error) => {
       console.log("update staff", error.message);
@@ -329,7 +324,7 @@ export const deleteStaff = (id) => (dispatch) => {
     });
 };
 
-export const delStaff = (delStaff) => ({
+export const delStaff = (staffs) => ({
   type: ActionType.DELETE_STAFF,
-  payload: delStaff,
+  payload: staffs,
 });

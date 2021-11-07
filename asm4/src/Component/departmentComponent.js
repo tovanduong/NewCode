@@ -7,11 +7,12 @@ function RenderDepartment({ items }) {
   return (
     <Link
       to={`/department/${items.id}`}
-      className="col-lg-3 col-md-5 col-sm-12 card-content"
+      className="col-lg-3 col-md-5 col-sm-12 "
+      style={{marginRight: "30px"}}
     >
-      <Card key={items.id}>
-        <span>{items.name}</span>
-        <span>số lượng nhân viên: {items.numberOfStaff}</span>
+      <Card key={items.id} className="card-content-dept" >
+        <h4 style={{paddingBottom: "10px", paddingTop:"10px"}}>{items.name}</h4>
+        <p>số lượng nhân viên: {items.numberOfStaff}</p>
       </Card>
     </Link>
   );

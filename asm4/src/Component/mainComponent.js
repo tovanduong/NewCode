@@ -75,20 +75,13 @@ class Main extends Component {
             <Header />
             <TransitionGroup>
               <CSSTransition
-                key={this.props.location.key}
-                classNames="page"
-                timeout={300}
               >
-                <Switch >
+                <Switch>
                   <Route path="/home" component={HomePage} />
                   <Route
                     exact
                     path="/Staff"
-                    component={() => (
-                      <Staff
-                        items={this.props}
-                      />
-                    )}
+                    component={() => <Staff items={this.props} />}
                   />
                   <Route path="/Staff/:itemsId" component={DishWithId} />
                   <Route

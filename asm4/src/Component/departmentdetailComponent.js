@@ -8,14 +8,14 @@ function RenderDepartment({ item }) {
   //   console.log(item);
   if (item) {
     return (
-      <div key={item.id} className="col-4">
+      <div key={item.id} className="col-lg-3 col-md-6 col-sm-12 ">
         <CardImg
           className="card-menu "
           width="100%"
           src={item.image}
           alt={item.name}
         />
-        <CardTitle style={{ textAlign: "center" }}>{item.name}</CardTitle>
+        <CardTitle style={{ textAlign: "center", fontSize: "30px", fontWeight: "bold" }}>{item.name}</CardTitle>
       </div>
     );
   }

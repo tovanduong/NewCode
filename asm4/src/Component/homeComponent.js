@@ -31,6 +31,8 @@ function Home(props) {
         <div>
               <img src={IMG.image} alt={"anh"} />
         </div>
+
+        
       </FadeTransform>
     );
 }
