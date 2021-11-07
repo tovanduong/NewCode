@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import Salary from "./salaryComponent";
 import Department from "./departmentComponent";
 import Header from "./headerComponent";
-// import { DEPARTMENTS } from "../shared/staffs";
+import Departmentdetail from "./departmentdetailComponent";
 import Footer from "./footerComponent";
 import Staff from "./menuComponent";
 import history from "../helps/history";
@@ -15,6 +15,7 @@ import {
   fetchStaff,
   fetchDepartments,
   fetchSalary,
+  fetchDepartmentStaff,
 } from "../redux/ActionCreator";
 
 const mapDispatchToProps = (dispatch) => ({
@@ -27,6 +28,9 @@ const mapDispatchToProps = (dispatch) => ({
   fetchSalary: () => {
     dispatch(fetchSalary());
   },
+  fetchDepartmentStaff: (id) => {
+    dispatch(fetchDepartmentStaff(id));
+  },
 });
 
 const mapStateToProps = (state) => {
@@ -34,6 +38,7 @@ const mapStateToProps = (state) => {
     staffs: state.staffs,
     itemDepartment: state.itemDepartment,
     salary: state.salary,
+    staffDepartments: state.staffDepartments,
   };
 };
 
@@ -45,7 +50,7 @@ class Main extends Component {
   }
 
   render() {
-    console.log(this.props.itemDepartment);
+    console.log(this.props.itemDepartment.departments);
     const HomePage = () => {
       return <Home />;
     };
@@ -58,10 +63,10 @@ class Main extends Component {
               (items) => items.id === parseInt(match.params.itemsId, 10)
             )[0]
           }
-          // dept={this.props.itemDepartment}
         />
       );
     };
+
     return (
       <div>
         <Router history={history}>
@@ -89,6 +94,12 @@ class Main extends Component {
                   <Department items={this.props.itemDepartment} />
                 )}
               />
+              <Route
+                exact
+                path="/department/:id"
+                component={Departmentdetail}
+              />
+
               <Redirect to="/home" />
             </Switch>
             <Footer />
