@@ -17,6 +17,7 @@ import {
   fetchSalary,
   fetchDepartmentStaff,
 } from "../redux/ActionCreator";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const mapDispatchToProps = (dispatch) => ({
   fetchStaff: () => {
@@ -50,9 +51,9 @@ class Main extends Component {
   }
 
   render() {
-    console.log(this.props.itemDepartment.departments);
+    console.log(this.props.itemDepartment);
     const HomePage = () => {
-      return <Home />;
+      return <Home items={this.props.staffs} />;
     };
     const DishWithId = ({ match }) => {
       return (
@@ -72,36 +73,46 @@ class Main extends Component {
         <Router history={history}>
           <div>
             <Header />
-            <Switch>
-              <Route path="/home" component={HomePage} />
-              <Route
-                exact
-                path="/Staff"
-                component={() => (
-                  <Staff items={this.props.staffs} addStaff={this.addStaff} />
-                )}
-              />
-              <Route path="/Staff/:itemsId" component={DishWithId} />
-              <Route
-                exact
-                path="/salary"
-                component={() => <Salary items={this.props.salary} />}
-              />
-              <Route
-                exact
-                path="/department"
-                component={() => (
-                  <Department items={this.props.itemDepartment} />
-                )}
-              />
-              <Route
-                exact
-                path="/department/:id"
-                component={Departmentdetail}
-              />
-
-              <Redirect to="/home" />
-            </Switch>
+            <TransitionGroup>
+              <CSSTransition
+                key={this.props.location.key}
+                classNames="page"
+                timeout={300}
+              >
+                <Switch >
+                  <Route path="/home" component={HomePage} />
+                  <Route
+                    exact
+                    path="/Staff"
+                    component={() => (
+                      <Staff
+                        items={this.props.staffs}
+                        addStaff={this.addStaff}
+                      />
+                    )}
+                  />
+                  <Route path="/Staff/:itemsId" component={DishWithId} />
+                  <Route
+                    exact
+                    path="/salary"
+                    component={() => <Salary items={this.props.salary} />}
+                  />
+                  <Route
+                    exact
+                    path="/department"
+                    component={() => (
+                      <Department items={this.props.itemDepartment} />
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/department/:id"
+                    component={Departmentdetail}
+                  />
+                  <Redirect to="/home" />
+                </Switch>
+              </CSSTransition>
+            </TransitionGroup>
             <Footer />
           </div>
         </Router>

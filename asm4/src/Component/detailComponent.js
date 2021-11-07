@@ -1,22 +1,17 @@
 import React from "react";
 import dateFormat from "dateformat";
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
-// import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { FadeTransform } from "react-animation-components";
 import { Link } from 'react-router-dom';
 
-function RenderStaff({ item, dept }) {
-    // const depts = dept
-    // const renderDept = (item)=> {
-    //     console.log(item)
-        
-    //     if(item.departmentId != null){
-
-    //     }
-    //    return item.department.name
-    // }
-    
+function RenderStaff({ item }) {
     if(item){
         return (
+            <FadeTransform
+                in
+                transformProps={{
+                    exitTransform: 'scale(0.5) translateY(-50%)'
+                }}>
             <div key={item.id} className="row">
                 <div className="col-3">
                     <img src={item.image} alt={item.name} width="100%" style={{ paddingBottom: "10px" }} />
@@ -30,6 +25,7 @@ function RenderStaff({ item, dept }) {
                     <p>số ngày làm thêm: {item.overTime}</p>
                 </div>
             </div>
+            </FadeTransform>
         );
     }
 

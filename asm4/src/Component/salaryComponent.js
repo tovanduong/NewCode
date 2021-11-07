@@ -1,6 +1,8 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Loading } from "./loadingComponent";
+
 function RenderSalary({ items }) {
     return (
         <Card key={items.id} className="col-lg-3 col-md-5 col-sm-12 card-content">
@@ -18,6 +20,23 @@ function Salary(props) {
             <RenderSalary items={item} key={item.id} />
         );
     });
+    if (props.items.isLoading) {
+        return (
+          <div className="container">
+            <div className="row">
+              <Loading />
+            </div>
+          </div>
+        );
+      } else if (props.items.errMess) {
+        return (
+          <div className="container">
+            <div className="row">
+              <h4>{props.items.errMess}</h4>
+            </div>
+          </div>
+        );
+      } else
     return (
         <div className="container" >
             <div className="row">
