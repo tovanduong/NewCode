@@ -73,24 +73,23 @@ const Staff = function (props) {
   // ===============validate===============
   const dispatch = useDispatch();
   const handleSubmit = function (values) {
-    //post API here
-
     const dept = props.items.itemDepartment.departments.find((el) => {
       return el.name === values.department;
     });
 
-    dispatch(postStaff(
-      props.items.staffs.staff.length,
-      values.name,
-      values.doB,
-      values.salaryScale,
-      values.startDate,
-      dept.id,
-      values.annualLeave,
-      values.overTime,
-      "/asset/images/alberto.png",
-      // values.salary
-    ));
+    dispatch(
+      postStaff(
+        props.items.staffs.staff.length,
+        values.name,
+        values.doB,
+        values.salaryScale,
+        values.startDate,
+        dept.id,
+        values.annualLeave,
+        values.overTime,
+        "/asset/images/alberto.png"
+      )
+    );
   };
   // =====================Menu==========================
   console.log(props);
@@ -145,29 +144,32 @@ const Staff = function (props) {
 
             <div className="row">
               {names.map((rs, index) => (
-                <Link
-                  key={index}
-                  style={{
-                    textDecoration: "none",
-                    color: "black",
-                    fontSize: "30px",
-                    fontWeight: "bold",
-                    marginLeft: "20px",
-                    marginBottom: "10px",
-                  }}
-                  to={`/Staff/${rs.id}`}
-                  className="col-lg-3 col-md-6 col-sm-12"
-                >
-                  <CardImg
-                    width="100%"
-                    src={rs.image}
-                    alt={rs.name}
-                    style={{ marginTop: 20, padding: 0 }}
-                  />
-                  <Card className="card-menu" key={index}>
-                    {rs.name}
-                  </Card>
-                </Link>
+                <>
+                  <Link
+                    key={index}
+                    style={{
+                      textDecoration: "none",
+                      color: "black",
+                      fontSize: "30px",
+                      fontWeight: "bold",
+                      marginLeft: "20px",
+                      marginBottom: "10px",
+                    }}
+                    to={`/Staff/${rs.id}`}
+                    className="col-lg-3 col-md-6 col-sm-12"
+                  >
+                    <CardImg
+                      width="100%"
+                      src={rs.image}
+                      alt={rs.name}
+                      style={{ marginTop: 20, padding: 0 }}
+                    />
+                    <Card className="card-menu" key={index}>
+                      {rs.name}
+                    </Card>
+                  </Link>
+                  <hr />
+                </>
               ))}
             </div>
           </div>
