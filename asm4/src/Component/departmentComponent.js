@@ -2,7 +2,7 @@ import React from "react";
 import { Breadcrumb, BreadcrumbItem, Card } from "reactstrap";
 import { Link } from "react-router-dom";
 import { Loading } from "./loadingComponent";
-
+import { FadeTransform } from "react-animation-components";
 function RenderDepartment({ items }) {
   return (
     <Link
@@ -10,10 +10,17 @@ function RenderDepartment({ items }) {
       className="col-lg-3 col-md-5 col-sm-12 "
       style={{marginRight: "30px"}}
     >
+            <FadeTransform
+      in
+      transformProps={{
+        exitTransform: "translateX(100%)",
+      }}
+    >
       <Card key={items.id} className="card-content-dept" >
         <h4 style={{paddingBottom: "10px", paddingTop:"10px"}}>{items.name}</h4>
         <p>số lượng nhân viên: {items.numberOfStaff}</p>
       </Card>
+      </FadeTransform>
     </Link>
   );
 }

@@ -17,7 +17,6 @@ import {
   fetchSalary,
   fetchDepartmentStaff,
 } from "../redux/ActionCreator";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const mapDispatchToProps = (dispatch) => ({
   fetchStaff: () => {
@@ -73,11 +72,9 @@ class Main extends Component {
         <Router history={history}>
           <div>
             <Header />
-            <TransitionGroup>
-              <CSSTransition
-              >
                 <Switch>
                   <Route path="/home" component={HomePage} />
+                  
                   <Route
                     exact
                     path="/Staff"
@@ -103,8 +100,6 @@ class Main extends Component {
                   />
                   <Redirect to="/home" />
                 </Switch>
-              </CSSTransition>
-            </TransitionGroup>
             <Footer />
           </div>
         </Router>

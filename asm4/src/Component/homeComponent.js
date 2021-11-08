@@ -25,11 +25,11 @@ function Home(props) {
       <FadeTransform
         in
         transformProps={{
-          exitTransform: "scale(0.5) translateY(-50%)",
+          exitTransform: "translateX(100%)",
         }}
       >
         <div>
-              <img src={IMG.image} alt={"anh"} />
+              <img src={IMG.image} alt={"anh"} width="100%" />
         </div>
 
         

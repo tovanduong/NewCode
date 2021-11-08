@@ -16,6 +16,7 @@ import { Control, LocalForm, Errors } from "react-redux-form";
 import { Link } from "react-router-dom";
 import { Loading } from "./loadingComponent";
 import { postStaff } from "../redux/ActionCreator";
+import { FadeTransform } from "react-animation-components";
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !val || val.length <= len;
@@ -24,6 +25,7 @@ const minLength = (len) => (val) => val && val.length >= len;
 function RenderMenu({ items }) {
   // console.log(items)
   return (
+    
     <Link
       style={{
         textDecoration: "none",
@@ -34,6 +36,12 @@ function RenderMenu({ items }) {
       to={`/Staff/${items.id}`}
       className="col-lg-3 col-md-6 col-sm-12 row"
     >
+      <FadeTransform
+      in
+      transformProps={{
+        exitTransform: "translateX(100%)",
+      }}
+    >
       <CardImg
         className="card-menu col-12"
         width="100%"
@@ -41,6 +49,7 @@ function RenderMenu({ items }) {
         alt={items.name}
       />
       <CardTitle className="col-12" style={{ textAlign: "center", fontSize: "22px" }}>{items.name}</CardTitle>
+    </FadeTransform>
     </Link>
   );
 }
@@ -49,7 +58,10 @@ const Staff = function (props) {
   // =======lọc tìm tên nhân viên ============
   const [name, setName] = useState("");
   const [names, setNames] = useState([]);
+  const [ back, setBack] = useState(false);
   const HandleSearch = () => {
+     setBack(!back);
+
     const filterName = props.items.staffs.staff.filter(function (el) {
       return el.name.toUpperCase().includes(name.toUpperCase()) === true;
     });
@@ -140,8 +152,6 @@ const Staff = function (props) {
             <button className="col-1 input-btn" onClick={HandleSearch}>
               Search
             </button>
-            <hr style={{ marginTop: 10 + "px" }} />
-
             <div className="row">
               {names.map((rs, index) => (
                 <>
@@ -168,12 +178,13 @@ const Staff = function (props) {
                       {rs.name}
                     </Card>
                   </Link>
-                  <hr />
                 </>
               ))}
+              <hr/>
             </div>
           </div>
         </div>
+
         {toggle && (
           <div className="overlay">
             <div className="row row-form">
@@ -346,21 +357,6 @@ const Staff = function (props) {
                       />
                     </Col>
                   </Row>
-
-                  {/* <Row className="row-form-content">
-                    <Label md={3} htmlFor="salary">
-                      Lương
-                    </Label>
-                    <Col md={8}>
-                      <Control.text
-                        className="form-group"
-                        type="number"
-                        model=".salary"
-                        id="salary"
-                        name="salary"
-                      />
-                    </Col>
-                  </Row> */}
 
                   <Row className="row-form-content">
                     <Col className="row">

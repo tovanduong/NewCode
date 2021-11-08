@@ -283,7 +283,7 @@ function RenderStaff({ item }) {
                     className="col-3"
                     style={{ margin: "0px 0px 20px 10px" }}
                   >
-                    Thêm
+                    Update
                   </Button>
                 </Col>
               </Row>

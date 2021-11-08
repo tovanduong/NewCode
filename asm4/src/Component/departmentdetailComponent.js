@@ -3,19 +3,45 @@ import { useDispatch, useSelector } from "react-redux";
 import { Breadcrumb, BreadcrumbItem, CardTitle, CardImg } from "reactstrap";
 import { Link } from "react-router-dom";
 import { fetchDepartmentStaff } from "../redux/ActionCreator";
+import { FadeTransform } from "react-animation-components";
 
 function RenderDepartment({ item }) {
-  //   console.log(item);
+  // console.log(item.id);
   if (item) {
     return (
       <div key={item.id} className="col-lg-3 col-md-6 col-sm-12 ">
-        <CardImg
-          className="card-menu "
-          width="100%"
-          src={item.image}
-          alt={item.name}
-        />
-        <CardTitle style={{ textAlign: "center", fontSize: "30px", fontWeight: "bold" }}>{item.name}</CardTitle>
+        <FadeTransform
+          in
+          transformProps={{
+            exitTransform: "translateX(100%)",
+          }}
+        >
+          <Link
+            style={{
+              textDecoration: "none",
+              color: "black",
+              fontSize: "30px",
+              fontWeight: "bold",
+            }}
+            to={`/Staff/${item.id}`}
+          >
+            <CardImg
+              className="card-menu "
+              width="100%"
+              src={item.image}
+              alt={item.name}
+            />
+            <CardTitle
+              style={{
+                textAlign: "center",
+                fontSize: "30px",
+                fontWeight: "bold",
+              }}
+            >
+              {item.name}
+            </CardTitle>
+          </Link>
+        </FadeTransform>
       </div>
     );
   }
@@ -24,12 +50,12 @@ const Departmentdetail = (props) => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.staffDepartments);
   const departments = useSelector((state) => state.itemDepartment);
- 
+
   const departmentName = departments.departments.filter(
     (x) => x.id === props.match.params.id
   )[0]?.name;
 
-  console.log(departments);
+  console.log(items.staffDepartments);
   useEffect(() => {
     dispatch(fetchDepartmentStaff(props.match.params.id));
   }, []);
